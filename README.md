@@ -1,2 +1,2 @@
-# Un_pendiente
-Proyecto de la materia programación de estructuras de datos y algoritmos fundamentales TC1031
+# Proyecto Mis Pendientes 
+Personalmente en mi día a día al igual que muchas personas, presento problemas a la hora de organizar mis deberes, tanto personales como académicos, a pesar de que hay muchas opciones de aplicaciones que ofrecen recordatorios, horariosy registros de deberes, personalmente no me agrada utilizar ninguna, por eso decidí hacer mi propio sistema de seguimiento y organización de horarios. En esta se organizarán clases, tareas pendientes, actividades personales, hora de dormir, hora de levantarse y días libres o de descanso. El programa permite realizar nuevos registros, marcarlos como completados y eliminar a decisión del usuario o temporalmente, tendrá visualización en modo calendario y en modo listado, ordenado de mayor a menor prioridad. El orden también tendrá diferenciación por colores (colores aún por definir).
