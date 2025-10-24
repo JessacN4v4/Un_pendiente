@@ -1,34 +1,50 @@
 #include <iostream>
-#include "calendario.h"
+#include "gestor.h"
 using namespace std;
 
-
 int main() {
-    Calendario mi_calendario;
+    Gestor gestor;
+    int opcion;
 
-    // Agregar algunas tareas
-    mi_calendario.agregar_tarea(Tarea("Estudiar C++", "2025-09-27", 1, 120));
-    mi_calendario.agregar_tarea(Tarea("Dormir", "2025-09-26", 2, 480));
-    mi_calendario.agregar_tarea(Tarea("Ejercicio", "2025-09-26", 3, 60));
-    mi_calendario.agregar_tarea(Tarea("Jugar videojuegos", "2025-09-28", 5, 180));
+    do {
+        cout << "\n1. Agregar actividad\n";
+        cout << "2. Mostrar actividades\n";
+        cout << "3. Marcar completada\n";
+        cout << "4. Eliminar actividad\n";
+        cout << "5. Ordenar (Bubble / Selection / Merge)\n";
+        cout << "0. Salir\n";
+        cout << "Opcion: ";
+        cin >> opcion;
 
-    // Mostrar
-    mi_calendario.mostrar_tareas();
+        switch (opcion) {
+        case 1: {
+            string nombre; int prioridad;
+            cout << "Nombre: "; cin.ignore(); getline(cin, nombre);
+            cout << "Prioridad: "; cin >> prioridad;
+            gestor.agregar(Actividad(nombre, prioridad));
+            break;
+        }
+        case 2: gestor.mostrar(); break;
+        case 3: {
+            int i; cout << "Numero: "; cin >> i;
+            gestor.marcar(i); break;
+        }
+        case 4: {
+            int i; cout << "Numero: "; cin >> i;
+            gestor.eliminar(i); break;
+        }
+        case 5: {
+            int m;
+            cout << "1. Bubble\n2. Selection\n3. Merge\nMetodo: ";
+            cin >> m;
+            if (m == 1) gestor.bubble_sort();
+            else if (m == 2) gestor.selection_sort();
+            else if (m == 3) gestor.ordenar_merge();
+            break;
+        }
+        }
+    } while (opcion != 0);
 
-    // Ordenadas por prioridad 
-    cout << "\n- Ordenadas por prioridad (Bubble sort)\n";
-    mi_calendario.bubble_sort_prioridad();
-    mi_calendario.mostrar_tareas();
-
-    // Ordenadas por duracion
-    cout << "\n- Ordenadas por duración (Selection sort)\n";
-    mi_calendario.selec_sort_duracion();
-    mi_calendario.mostrar_tareas();
-
-    // Ordenadas por fecha
-    cout << "\n- Ordenadas por fecha (Merge sort)\n";
-    mi_calendario.ordenar_p_fecha();
-    mi_calendario.mostrar_tareas();
-
+    cout << "Programa finalizado.\n";
     return 0;
 }
