@@ -106,7 +106,8 @@ Los algoritmos de ordenamiento (Bubble Sort, Selection Sort y Merge Sort) se ada
    - Ver estadísticas (pendientes vs completadas)
    - Salir (guarda automáticamente)
 4. El programa automáticamente selecciona el algoritmo de ordenamiento más eficiente según el número de actividades registradas.
-5. Todos los cambios se guardan automáticamente en el archivo `mis_pendientes.txt`.
+5. Si el archivo `mis_pendientes.txt` no existe, se crea.
+6. Todos los cambios se guardan automáticamente en el archivo `mis_pendientes.txt`.
 
 ## Evaluación de la complejidad
 
