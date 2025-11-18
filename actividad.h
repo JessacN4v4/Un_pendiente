@@ -28,10 +28,10 @@ public:
     }
     
     void mostrar() const {
-        cout << "Actividad: " << nombre << endl;
-        cout << "Tipo: " << tipo << endl;
-        cout << "Prioridad: " << prioridad << endl;
-        cout << "Estado: " << (completada ? "Completada" : "Pendiente") << endl;
+        cout << "  Actividad: " << nombre << endl;
+        cout << "  Tipo: " << tipo << endl;
+        cout << "  Prioridad: " << prioridad << endl;
+        cout << "  Estado: " << (completada ? " Completada :)" : " Pendiente :|") << endl;
     }
 };
 
