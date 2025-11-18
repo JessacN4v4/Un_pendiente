@@ -4,11 +4,12 @@
 #include <vector>
 #include <iostream>
 #include "actividad.h"
+#include "listaligada.h"
 using namespace std;
 
 class Sorts {
 public:
-    // Bubble Sort Iterativo
+    // Bubble Sort para vector 
     static void bubble_sort(vector<Actividad>& arr) {
         int n = arr.size();
         for (int i = 0; i < n - 1; i++) {
@@ -23,7 +24,7 @@ public:
         }
     }
     
-    // Selection Sort Iterativo
+    // Selection Sort para vector 
     static void selection_sort(vector<Actividad>& arr) {
         int n = arr.size();
         for (int i = 0; i < n - 1; i++) {
@@ -39,7 +40,7 @@ public:
         }
     }
     
-    // Merge Sort Recursivo
+    // Merge Sort para vector 
     static void merge_sort(vector<Actividad>& arr, int inicio, int fin) {
         if (inicio < fin) {
             int medio = inicio + (fin - inicio) / 2;
@@ -49,25 +50,32 @@ public:
         }
     }
     
-    // Funcion de seleccion automatica
-    static void ordenar_automatico(vector<Actividad>& arr) {
-        int n = arr.size();
+    // Funcion de ordenamiento automatico para lista ligada
+    static void ordenar_automatico(Lista_doblemente_ligada& lista) {
+        int n = lista.obtener_tamanio();
         
         if (n == 0) {
             cout << "No hay actividades para ordenar." << endl;
             return;
         }
         
+        // Convertir lista a vector
+        vector<Actividad> vec = lista.a_vector();
+        
+        // Seleccionar algoritmo segun tamaño
         if (n < 20) {
             cout << "Usando Bubble Sort (lista pequeña: " << n << " elementos)" << endl;
-            bubble_sort(arr);
+            bubble_sort(vec);
         } else if (n < 50) {
             cout << "Usando Selection Sort (lista mediana: " << n << " elementos)" << endl;
-            selection_sort(arr);
+            selection_sort(vec);
         } else {
             cout << "Usando Merge Sort (lista grande: " << n << " elementos)" << endl;
-            merge_sort(arr, 0, n - 1);
+            merge_sort(vec, 0, n - 1);
         }
+        
+        // Reconstruir lista desde vector ordenado
+        lista.desde_vector(vec);
         
         cout << "Actividades ordenadas exitosamente." << endl;
     }
