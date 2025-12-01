@@ -76,34 +76,45 @@ Se implementó el sistema de persistencia bidireccional: El avance 2 solo tenía
 
 Formato del archivo mis_pendientes.txt:
 Prioridad,Tipo,Nombre,Estado
+```
 8,Tarea,Entregar proyecto,Pendiente
 5,Clase,Matemáticas Discretas,Pendiente
 3,Personal,Ir al gimnasio,Completada
-
+```
 
 Se implementó guardado automático: Anteriormente los cambios se perdían al cerrar el programa. Ahora el Gestor_actividades en gestor.h realiza guardado automático al agregar una actividad, marcar como completada, eliminar una actividad, ordenar las actividades y al salir del programa mediante el destructor.
+
 Se agregaron los mecanismos de consulta de información: Se implementaron múltiples funciones para consultar información eficientemente de la estructura:
-obtener_primera(): Retorna la primera actividad de la lista en O(1)
-obtener_ultima(): Retorna la última actividad de la lista en O(1)
-obtener_por_indice(int indice): Accede a una actividad específica por su posición
-buscar_por_prioridad(int prioridad): Encuentra todas las actividades con una prioridad específica
-contar_pendientes(): Cuenta cuántas actividades están pendientes
-contar_completadas(): Cuenta cuántas actividades están completadas
-esta_vacia(): Verifica si la lista está vacía en O(1)
+- obtener_primera(): Retorna la primera actividad de la lista en O(1)
+- obtener_ultima(): Retorna la última actividad de la lista en O(1)
+- obtener_por_indice(int indice): Accede a una actividad específica por su posición
+- buscar_por_prioridad(int prioridad): Encuentra todas las actividades con una prioridad específica
+- contar_pendientes(): Cuenta cuántas actividades están pendientes
+- contar_completadas(): Cuenta cuántas actividades están completadas
+- esta_vacia(): Verifica si la lista está vacía en O(1)
 
 
 ## Instrucciones para compilar y ejecutar el avance de proyecto
 Ejecuta el siguiente comando en la terminal para compilar:
 ```g++ main.cpp -o mis_pendientes```
-Ejecuta el siguiente comando en la terminal:
+
+Ejecuta el siguiente comando en la terminal para ejecución:
 ```./mis_pendientes```
 
 
 ### Descripción de las entradas del avance de proyecto
 El proyecto acepta dos tipos de entradas:
 El usuario ingresa información a través del menú de opciones. Para agregar una actividad debe ingresar el nombre de la actividad, el tipo (Clase/Tarea/Personal/Dormir/Descanso) y la prioridad (1-10, donde 10 es máxima prioridad).
+
 El proyecto carga automáticamente las actividades desde el archivo mis_pendientes.txt si existe. El formato CSV esperado es:
-Prioridad,Tipo,Nombre,Estado 8,Tarea,Entregar proyecto,Pendiente 5,Clase,Matemáticas,Pendiente 3,Personal,Ejercicio,Completada
+
+Prioridad,Tipo,Nombre,Estado 
+```
+8,Tarea,Entregar proyecto,Pendiente 
+5,Clase,Matemáticas,Pendiente 
+3,Personal,Ejercicio,Completada
+```
+
 El archivo incluido contiene actividades representativas que muestran el potencial del sistema con diferentes tipos, prioridades variadas y estados pendientes/completados.
 Descripción de las salidas del avance de proyecto:
 
@@ -144,6 +155,7 @@ Actividades cargadas exitosamente desde mis_pendientes.txt
 Total de actividades: 5
 ```
 ## Desarrollo de competencias
+
 ### SICT0301: Evalúa los componentes
 
 #### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
@@ -176,46 +188,54 @@ En este programa cada algoritmo tiene un propósito específico: Bubble Sort se 
 El proyecto utiliza la Lista Doblemente Ligada como estructura principal, analizada con sus tres casos:
 
 Lista_doblemente_ligada (listaligada.h):
-    Para agregar_final() y agregar_inicio():
-        - Mejor caso: O(1) - acceso directo mediante apuntadores cabeza/cola
-        - Caso promedio: O(1) - siempre actualiza solo los apuntadores necesarios
-        - Peor caso: O(1) - no depende del tamaño de la lista
-        - Justificación: Los apuntadores cabeza y cola permiten inserción constante en ambos extremos
-    Para obtener_primera() y obtener_ultima():
-        - Mejor caso: O(1) - retorna directamente cabeza->datos o cola->datos
-        - Caso promedio: O(1) - acceso directo sin recorrido
-        - Peor caso: O(1) - siempre acceso constante mediante apuntadores
-        - Justificación: Fundamental para consultas rápidas de extremos de la lista
-    Para obtener_por_indice(int indice):
-        - Mejor caso: O(1) - cuando se accede al primer elemento (índice 0)
-        - Caso promedio: O(n) - estadísticamente se busca en la mitad de la lista
-        - Peor caso: O(n) - cuando se busca el último elemento recorriendo desde cabeza
-        - Justificación: Requiere recorrido secuencial desde la cabeza hasta el índice deseado
-    Para eliminar_por_indice(int indice):
-        - Mejor caso: O(1) - si se elimina el primer elemento, solo ajusta cabeza
-        - Caso promedio: O(n) - debe recorrer hasta encontrar el elemento
-        - Peor caso: O(n) - eliminar el último elemento recorriendo toda la lista
-        - Justificación: Después de encontrar el nodo, la eliminación es O(1) ajustando apuntadores
-    Para buscar_por_prioridad(int prioridad):
-        - Mejor caso: O(n) - debe recorrer toda la lista para encontrar todas las coincidencias
-        - Caso promedio: O(n) - siempre recorre completamente para no perder coincidencias
-        - Peor caso: O(n) - comportamiento lineal garantizado
-        - Justificación: Búsqueda exhaustiva necesaria para retornar todas las actividades con esa prioridad
-    Para contar_pendientes() y contar_completadas():
-        - Mejor caso: O(n) - debe verificar el estado de cada actividad
-        - Caso promedio: O(n) - recorrido completo necesario
-        - Peor caso: O(n) - comportamiento lineal en todos los casos
-        - Justificación: Conteo requiere inspeccionar cada nodo de la lista
-    Para esta_vacia():
-        - Mejor caso: O(1) - verifica si cabeza == nullptr
-        - Caso promedio: O(1) - comparación directa
-        - Peor caso: O(1) - siempre constante
-        - Justificación: No depende del tamaño de la lista
-    Para a_vector() y desde_vector():
-        - Mejor caso: O(n) - debe copiar cada elemento
-        - Caso promedio: O(n) - recorrido completo
-        - Peor caso: O(n) - transferencia lineal de datos
-        - Justificación: Conversión necesaria para integrar con algoritmos de ordenamiento
+
+Para agregar_final() y agregar_inicio():
+- Mejor caso: O(1) - acceso directo mediante apuntadores cabeza/cola
+- Caso promedio: O(1) - siempre actualiza solo los apuntadores necesarios
+- Peor caso: O(1) - no depende del tamaño de la lista
+- Justificación: Los apuntadores cabeza y cola permiten inserción constante en ambos extremos
+
+Para obtener_primera() y obtener_ultima():
+- Mejor caso: O(1) - retorna directamente cabeza->datos o cola->datos
+- Caso promedio: O(1) - acceso directo sin recorrido
+- Peor caso: O(1) - siempre acceso constante mediante apuntadores
+- Justificación: Fundamental para consultas rápidas de extremos de la lista
+
+Para obtener_por_indice(int indice):
+- Mejor caso: O(1) - cuando se accede al primer elemento (índice 0)
+- Caso promedio: O(n) - estadísticamente se busca en la mitad de la lista
+- Peor caso: O(n) - cuando se busca el último elemento recorriendo desde cabeza
+- Justificación: Requiere recorrido secuencial desde la cabeza hasta el índice deseado
+
+Para eliminar_por_indice(int indice):
+- Mejor caso: O(1) - si se elimina el primer elemento, solo ajusta cabeza
+- Caso promedio: O(n) - debe recorrer hasta encontrar el elemento
+- Peor caso: O(n) - eliminar el último elemento recorriendo toda la lista
+- Justificación: Después de encontrar el nodo, la eliminación es O(1) ajustando apuntadores
+
+Para buscar_por_prioridad(int prioridad):
+- Mejor caso: O(n) - debe recorrer toda la lista para encontrar todas las coincidencias
+- Caso promedio: O(n) - siempre recorre completamente para no perder coincidencias
+- Peor caso: O(n) - comportamiento lineal garantizado
+- Justificación: Búsqueda exhaustiva necesaria para retornar todas las actividades con esa prioridad
+
+Para contar_pendientes() y contar_completadas():
+- Mejor caso: O(n) - debe verificar el estado de cada actividad
+- Caso promedio: O(n) - recorrido completo necesario
+- Peor caso: O(n) - comportamiento lineal en todos los casos
+- Justificación: Conteo requiere inspeccionar cada nodo de la lista
+
+Para esta_vacia():
+- Mejor caso: O(1) - verifica si cabeza == nullptr
+- Caso promedio: O(1) - comparación directa
+- Peor caso: O(1) - siempre constante
+- Justificación: No depende del tamaño de la lista
+
+Para a_vector() y desde_vector():
+- Mejor caso: O(n) - debe copiar cada elemento
+- Caso promedio: O(n) - recorrido completo
+- Peor caso: O(n) - transferencia lineal de datos
+- Justificación: Conversión necesaria para integrar con algoritmos de ordenamiento
         
 Complejidad espacial de la estructura: O(n) - cada nodo requiere espacio para datos (Actividad) y dos apuntadores (siguiente y anterior)
     
@@ -226,64 +246,72 @@ Una lista doblemente ligada ofrece excelentes operaciones en los extremos O(1) a
 Analizando el programa completo con sus tres casos de complejidad:
 
 Componentes del Gestor_actividades (gestor.h):
-    agregar_actividad():
-        - Mejor caso: O(1) - agregar_final es O(1), luego guardar O(n)
-        - Caso promedio: O(n) - dominado por guardar_en_archivo
-        - Peor caso: O(n) - escritura de todo el archivo
-        - Justificación: La inserción es constante pero el guardado automático es lineal
-    marcar_completada(int indice):
-        - Mejor caso: O(n) - obtener_por_indice + guardar_en_archivo
-        - Caso promedio: O(n) - dominado por búsqueda y guardado
-        - Peor caso: O(n) - comportamiento lineal
-        - Justificación: Combina búsqueda por índice con persistencia
-    eliminar_actividad(int indice):
-        - Mejor caso: O(n) - eliminar_por_indice + guardar_en_archivo
-        - Caso promedio: O(n) - dominado por guardado
-        - Peor caso: O(n) - comportamiento lineal
-    ordenar_prioridad():
-        - Mejor caso: O(n) - si usa Bubble Sort con datos ordenados
-        - Caso promedio: O(n²) - Bubble/Selection Sort o O(n log n) Merge Sort
-        - Peor caso: O(n²) - dependiendo del algoritmo seleccionado
-        - Justificación: Selección automática según tamaño de lista
-    mostrar_estadisticas():
-        - Mejor caso: O(n) - recorre toda la lista para contar
-        - Caso promedio: O(n) - comportamiento lineal
-        - Peor caso: O(n) - siempre recorrido completo
+
+agregar_actividad():
+- Mejor caso: O(1) - agregar_final es O(1), luego guardar O(n)
+- Caso promedio: O(n) - dominado por guardar_en_archivo
+- Peor caso: O(n) - escritura de todo el archivo
+- Justificación: La inserción es constante pero el guardado automático es lineal
+
+marcar_completada(int indice):
+- Mejor caso: O(n) - obtener_por_indice + guardar_en_archivo
+- Caso promedio: O(n) - dominado por búsqueda y guardado
+- Peor caso: O(n) - comportamiento lineal
+- Justificación: Combina búsqueda por índice con persistencia
+
+eliminar_actividad(int indice):
+- Mejor caso: O(n) - eliminar_por_indice + guardar_en_archivo
+- Caso promedio: O(n) - dominado por guardado
+- Peor caso: O(n) - comportamiento lineal
+
+ordenar_prioridad():
+- Mejor caso: O(n) - si usa Bubble Sort con datos ordenados
+- Caso promedio: O(n²) - Bubble/Selection Sort o O(n log n) Merge Sort
+- Peor caso: O(n²) - dependiendo del algoritmo seleccionado
+- Justificación: Selección automática según tamaño de lista
+
+mostrar_estadisticas():
+- Mejor caso: O(n) - recorre toda la lista para contar
+- Caso promedio: O(n) - comportamiento lineal
+- Peor caso: O(n) - siempre recorrido completo
 
 Componentes de Persistencia (listaligada.h):
-    guardar_en_archivo():
-        - Mejor caso: O(n) - debe escribir cada actividad
-        - Caso promedio: O(n) - recorrido completo de la lista
-        - Peor caso: O(n) - comportamiento lineal garantizado
-        - Justificación: Cada nodo se escribe secuencialmente al archivo
-    cargar_desde_archivo():
-        - Mejor caso: O(n) - donde n es el número de líneas del archivo
-        - Caso promedio: O(n) - lectura y parseo de cada línea
-        - Peor caso: O(n) - comportamiento lineal
-        - Justificación: Cada línea se procesa e inserta en la lista
+
+guardar_en_archivo():
+- Mejor caso: O(n) - debe escribir cada actividad
+- Caso promedio: O(n) - recorrido completo de la lista
+- Peor caso: O(n) - comportamiento lineal garantizado
+- Justificación: Cada nodo se escribe secuencialmente al archivo
+
+cargar_desde_archivo():
+- Mejor caso: O(n) - donde n es el número de líneas del archivo
+- Caso promedio: O(n) - lectura y parseo de cada línea
+- Peor caso: O(n) - comportamiento lineal
+- Justificación: Cada línea se procesa e inserta en la lista
 
 Componentes del menú principal (main.cpp):
-    - mostrar_menu(): O(1) - impresión fija de opciones limpiar_buffer(): O(1) - operación de entrada pausar(): O(1) - espera de entrada
+- mostrar_menu(): O(1) - impresión fija de opciones limpiar_buffer(): O(1) - operación de entrada pausar(): O(1) - espera de entrada
 
 Complejidad final del programa:
-    - Mejor caso del sistema - O(1): Cuando el usuario solo consulta primera/última actividad o verifica si la lista está vacía. Operaciones que no requieren recorrido ni ordenamiento.
-    - Caso promedio del sistema - O(n): El uso típico involucra agregar actividades O(1) + guardar O(n), mostrar actividades O(n), buscar por prioridad O(n), ver estadísticas O(n), cargar al iniciar O(n). La mayoría de operaciones requieren un recorrido lineal de la lista o del archivo.
-    - Peor caso del sistema - O(n²): Ocurre cuando el usuario ordena frecuentemente las actividades con Bubble Sort o Selection Sort. Si la lista tiene n elementos y se ordena múltiples veces por sesión, cada operación de ordenamiento es O(n²). Con listas grandes (>50 elementos), Merge Sort reduce esto a O(n log n).
+- Mejor caso del sistema - O(1): Cuando el usuario solo consulta primera/última actividad o verifica si la lista está vacía. Operaciones que no requieren recorrido ni ordenamiento.
+- Caso promedio del sistema - O(n): El uso típico involucra agregar actividades O(1) + guardar O(n), mostrar actividades O(n), buscar por prioridad O(n), ver estadísticas O(n), cargar al iniciar O(n). La mayoría de operaciones requieren un recorrido lineal de la lista o del archivo.
+- Peor caso del sistema - O(n²): Ocurre cuando el usuario ordena frecuentemente las actividades con Bubble Sort o Selection Sort. Si la lista tiene n elementos y se ordena múltiples veces por sesión, cada operación de ordenamiento es O(n²). Con listas grandes (>50 elementos), Merge Sort reduce esto a O(n log n).
 
 Resumen de operaciones individuales:
-    - agregar_actividad: O(n) por guardado automático
-    - mostrar_actividades: O(n) en los tres casos
-    - obtener_primera/ultima: O(1) en los tres casos
-    - obtener_por_indice: mejor O(1), promedio O(n), peor O(n)
-    - ordenar: mejor O(n), promedio O(n²) o O(n log n), peor O(n²)
-    - buscar_por_prioridad: O(n) en los tres casos
-    - estadísticas: O(n) en los tres casos
-    - cargar/guardar archivo: O(n) en los tres casos
+- agregar_actividad: O(n) por guardado automático
+- mostrar_actividades: O(n) en los tres casos
+- obtener_primera/ultima: O(1) en los tres casos
+- obtener_por_indice: mejor O(1), promedio O(n), peor O(n)
+- ordenar: mejor O(n), promedio O(n²) o O(n log n), peor O(n²)
+- buscar_por_prioridad: O(n) en los tres casos
+- estadísticas: O(n) en los tres casos
+- cargar/guardar archivo: O(n) en los tres casos
     
 La complejidad final del programa es: mejor caso O(1) para consultas simples, caso promedio O(n) para uso normal, peor caso O(n²) cuando se ordena frecuentemente con algoritmos cuadráticos.
 En general un sistema puede tener múltiples complejidades dependiendo del patrón de uso, y el guardado automático después de cada operación importante agrega un costo O(n) pero garantiza la persistencia de datos e historial sobre el cual trabajar.
 
 ### SICT0302: Toma decisiones
+
 #### Selecciona un algoritmo de ordenamiento adecuado al problema y lo usa correctamente.
 
 En el archivo sorts.h se implementa la función ordenar_automatico() que selecciona el algoritmo más apropiado según el tamaño de la lista:
@@ -311,68 +339,77 @@ Un gestor de tareas constantemente agrega, elimina y recorre actividades, pero r
 #### Implementa mecanismos para consultar información de las estructuras correctos.
 
 El proyecto implementa múltiples mecanismos de consulta en listaligada.h y gestor.h:
-    Consulta de extremos - O(1):
-    - obtener_primera(): Retorna &(cabeza->datos) directamente, permitiendo ver la actividad más prioritaria después de ordenar
-    - obtener_ultima(): Retorna &(cola->datos) directamente, permitiendo ver la última actividad agregada o la de menor prioridad
-    Consulta por índice - O(n):
-    - obtener_por_indice(int indice): Recorre desde cabeza hasta el índice especificado. Valida que el índice esté en rango [0, tam-1] antes de recorrer
-    Consulta por criterio - O(n):
-    - buscar_por_prioridad(int prioridad): Recorre toda la lista comparando la prioridad de cada actividad. Retorna un vector<Actividad*> con todas las coincidencias, permitiendo múltiples resultados
-    Consultas de conteo - O(n):
-    - contar_pendientes(): Recorre la lista verificando !is_completada() en cada nodo
-    - contar_completadas(): Recorre la lista verificando is_completada() en cada nodo
-    - obtener_tamanio(): Retorna el contador tam en O(1) sin necesidad de recorrer
-    Consulta de estado - O(1):
-    - esta_vacia(): Verifica cabeza == nullptr para determinar si hay elementos
+
+Consulta de extremos - O(1):
+- obtener_primera(): Retorna &(cabeza->datos) directamente, permitiendo ver la actividad más prioritaria después de ordenar
+- obtener_ultima(): Retorna &(cola->datos) directamente, permitiendo ver la última actividad agregada o la de menor prioridad
+
+Consulta por índice - O(n):
+- obtener_por_indice(int indice): Recorre desde cabeza hasta el índice especificado. Valida que el índice esté en rango [0, tam-1] antes de recorrer
+
+Consulta por criterio - O(n):
+- buscar_por_prioridad(int prioridad): Recorre toda la lista comparando la prioridad de cada actividad. Retorna un vector<Actividad*> con todas las coincidencias, permitiendo múltiples resultados
+
+Consultas de conteo - O(n):
+- contar_pendientes(): Recorre la lista verificando !is_completada() en cada nodo
+- contar_completadas(): Recorre la lista verificando is_completada() en cada nodo
+- obtener_tamanio(): Retorna el contador tam en O(1) sin necesidad de recorrer
+
+Consulta de estado - O(1):
+- esta_vacia(): Verifica cabeza == nullptr para determinar si hay elementos
 
 En gestor.h, estas funciones se exponen a través del menú:
-    - mostrar_primera(): Llama obtener_primera() y muestra los datos
-    - mostrar_ultima(): Llama obtener_ultima() y muestra los datos
-    - mostrar_por_indice(int indice): Llama obtener_por_indice() con validación
-    - buscar_por_prioridad(int prioridad): Filtra y muestra todas las coincidencias
-    - mostrar_estadisticas(): Combina contar_pendientes(), contar_completadas() y obtener_tamanio() para generar un resumen
+- mostrar_primera(): Llama obtener_primera() y muestra los datos
+- mostrar_ultima(): Llama obtener_ultima() y muestra los datos
+- mostrar_por_indice(int indice): Llama obtener_por_indice() con validación
+- buscar_por_prioridad(int prioridad): Filtra y muestra todas las coincidencias
+- mostrar_estadisticas(): Combina contar_pendientes(), contar_completadas() y obtener_tamanio() para generar un resumen
 
 Para diferentes tipos de consulta se requieren diferentes estrategias: acceso directo por apuntadores para extremos, recorrido secuencial para búsquedas por criterio, y contadores mantenidos para consultas de tamaño.
 
 #### Implementa mecanismos de lectura de archivos para cargar datos a las estructuras de manera correcta.
 
 La carga de datos se implementa en cargar_desde_archivo() en listaligada.h:
-    Proceso de lectura:
-        1 Se abre el archivo con ifstream verificando que exista y sea accesible
-        2 Se descarta la primera línea (encabezados CSV: "Prioridad,Tipo,Nombre,Estado")
-        3 Para cada línea restante:
-        - Se crea un stringstream para parsear los campos separados por comas
-        - Se extraen: prioridad_str, tipo, nombre, estado
-        - Se convierte prioridad_str a entero con stoi()
-        - Se crea un objeto Actividad con los datos parseados
-        - Si estado == "Completada", se llama act.marcar_completada()
-        - Se agrega a la lista con agregar_final()
-    Manejo de errores:
-        - Si el archivo no existe, retorna false sin error crítico (lista vacía inicial)
-        - Si una línea tiene formato incorrecto, se captura la excepción y se continúa con la siguiente
-        - Se reporta el error por cerr para debugging
+
+Proceso de lectura:
+1 Se abre el archivo con ifstream verificando que exista y sea accesible
+2 Se descarta la primera línea (encabezados CSV: "Prioridad,Tipo,Nombre,Estado")
+3 Para cada línea restante:
+- Se crea un stringstream para parsear los campos separados por comas
+- Se extraen: prioridad_str, tipo, nombre, estado
+- Se convierte prioridad_str a entero con stoi()
+- Se crea un objeto Actividad con los datos parseados
+- Si estado == "Completada", se llama act.marcar_completada()
+- Se agrega a la lista con agregar_final()
+
+Manejo de errores:
+- Si el archivo no existe, retorna false sin error crítico (lista vacía inicial)
+- Si una línea tiene formato incorrecto, se captura la excepción y se continúa con la siguiente
+- Se reporta el error por cerr para debugging
 
 Integración con Gestor_actividades: En el constructor de Gestor_actividades se llama cargar_actividades() que invoca cargar_desde_archivo(). Esto garantiza que al iniciar el programa se restauren automáticamente las actividades de la sesión anterior.
 
 La complejidad es O(n) donde n es el número de líneas del archivo, ya que cada línea se procesa y se inserta en O(1) al final de la lista. La lectura de archivos debe ser robusta ante errores, mantener compatibilidad con el formato de escritura, y ejecutarse automáticamente para una experiencia fluida del usuario.
 
 #### Implementa mecanismos de escritura de archivos para guardar los datos de las estructuras de manera correcta.
-La escritura de datos se implementa en guardar_en_archivo() en listaligada.h:
-    Proceso de escritura:
-        1 Se abre/crea el archivo con ofstream
-        2 Se escribe la línea de encabezados: "Prioridad,Tipo,Nombre,Estado"
-        3 Se recorre la lista desde cabeza hasta cola:
-        - Para cada nodo, se escribe una línea CSV con formato:
-prioridad,tipo,nombre,estado
-        - El estado se determina con: is_completada() ? "Completada" : "Pendiente"
-        4 Se cierra el archivo
 
-Guardado automático: En gestor.h, se implementa guardado automático llamando     -  guardar_actividades() después de:
-    - agregar_actividad(): Cada nueva actividad se persiste inmediatamente
-    - marcar_completada(): El cambio de estado se guarda
-    - eliminar_actividad(): La eliminación se refleja en el archivo
-    - ordenar_prioridad(): El nuevo orden se preserva
-    - ~Gestor_actividades(): El destructor garantiza guardado al salir
+La escritura de datos se implementa en guardar_en_archivo() en listaligada.h:
+
+Proceso de escritura:
+1 Se abre/crea el archivo con ofstream
+2 Se escribe la línea de encabezados: "Prioridad,Tipo,Nombre,Estado"
+3 Se recorre la lista desde cabeza hasta cola:
+- Para cada nodo, se escribe una línea CSV con formato:
+prioridad,tipo,nombre,estado
+- El estado se determina con: is_completada() ? "Completada" : "Pendiente"
+4 Se cierra el archivo
+
+Guardado automático: En gestor.h, se implementa guardado automático llamando -  guardar_actividades() después de:
+- agregar_actividad(): Cada nueva actividad se persiste inmediatamente
+- marcar_completada(): El cambio de estado se guarda
+- eliminar_actividad(): La eliminación se refleja en el archivo
+- ordenar_prioridad(): El nuevo orden se preserva
+- ~Gestor_actividades(): El destructor garantiza guardado al salir
 
 Formato de salida:
 ```
@@ -387,21 +424,21 @@ La complejidad es O(n) donde n es el número de actividades, ya que debe recorre
 Para el programa, la escritura de archivos requiere considerar el formato de datos para compatibilidad con la lectura, el guardado automático previene pérdida de datos, y el formato CSV es portable y legible tanto por humanos como por el programa.
 
 ## Uso del programa
+
 1 Ejecutar el programa desde la consola o entorno de desarrollo
 2 El sistema carga automáticamente las actividades guardadas previamente (si existen)
 3 El menú principal muestra las siguientes opciones:
- - Agregar una nueva actividad
- - Ver lista de actividades
- - Marcar una actividad como completada
- - Eliminar una actividad
- - Ordenar las actividades por prioridad
- - Ver primera actividad
- - Ver última actividad
- - Ver actividad por número
- - Buscar por prioridad
- - Ver estadísticas
- - Salir (guarda automáticamente)
-
+- Agregar una nueva actividad
+- Ver lista de actividades
+- Marcar una actividad como completada
+- Eliminar una actividad
+- Ordenar las actividades por prioridad
+- Ver primera actividad
+- Ver última actividad
+- Ver actividad por número
+- Buscar por prioridad
+- Ver estadísticas
+- Salir (guarda automáticamente)
 4 El programa automáticamente selecciona el algoritmo de ordenamiento más eficiente según el número de actividades registradas
 5 Si el archivo mis_pendientes.txt no existe, se crea automáticamente al agregar la primera actividad
 6 Todos los cambios se guardan automáticamente en el archivo mis_pendientes.txt
