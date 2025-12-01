@@ -168,12 +168,14 @@ Bubble Sort (bubble_sort):
  - Peor caso: O(n²) - cuando la lista está en orden inverso, debe realizar el máximo de intercambios posibles
  - Complejidad espacial: O(1) - ordenamiento in-place
  - Justificación: Adecuado para listas pequeñas (menos de 20 elementos), fácil de implementar y tiene buen desempeño cuando los datos están casi ordenados
+
 Selection Sort (selection_sort):
  - Mejor caso: O(n²) - siempre busca el máximo elemento en cada iteración
  - Caso promedio: O(n²) - realiza el mismo número de comparaciones sin importar el orden inicial
  - Peor caso: O(n²) - comportamiento idéntico en todos los casos
  - Complejidad espacial: O(1) - ordenamiento in-place
  - Justificación: Consistente y predecible. Minimiza el número de intercambios, útil cuando el costo de intercambio es alto
+
 Merge Sort (merge_sort):
  - Mejor caso: O(n log n) - división recursiva siempre en mitades
  - Caso promedio: O(n log n) - comportamiento consistente
