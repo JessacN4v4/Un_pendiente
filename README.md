@@ -22,13 +22,12 @@ Además, el sistema permite:
 - Eliminar registros (de forma definitiva o temporal)
 - Visualizar la información, tanto en modo calendario como en modo lista
 - Ordenar las actividades por prioridad, de mayor a menor
-- Diferenciar las prioridades por colores (colores aún por definir)
 - Persistencia de datos mediante archivos
 - Navegación bidireccional entre actividades
 - Consultas eficientes de actividades específicas
   
 ## Descripción del avance 1 del proyecto
-Un proyecto básico de gestión de actividades en el que se implementa un sistema de registro y almacenamiento en memoria con una interfaz de consola funcional. Se desarrollaron tres algoritmos de ordenamiento: Bubble Sort para listas pequeñas (menos de 20 elementos), Selection Sort para listas medianas (20-50 elementos) y Merge Sort para listas grandes (más de 50 elementos). El sistema permite al usuario agregar, marcar o eliminar actividades fácilmente a través de un menú interactivo. La estructura inicial utiliza funciones iterativas, recursivas y directas, permitiendo un código modular y organizado. La limitación principal de este avance es que los datos no persisten entre ejecuciones del programa.
+Comienza el desarrollo del proyecto de gestión de actividades en el que se implementa un sistema de registro y almacenamiento en memoria con una interfaz de consola funcional. Se implementaron tres algoritmos de ordenamiento: Bubble Sort para listas pequeñas (menos de 20 elementos), Selection Sort para listas medianas (20-50 elementos) y Merge Sort para listas grandes (más de 50 elementos). El sistema permite al usuario agregar, marcar o eliminar actividades fácilmente a través de un menú interactivo. La estructura inicial utiliza funciones iterativas, recursivas y directas, permitiendo un código modular y organizado. La limitación principal de este avance es que los datos no se guardan para persistir entre ejecuciones del programa.
 
 
 ## Descripción del avance 2 del proyecto
@@ -75,8 +74,8 @@ Se implementó el sistema de persistencia bidireccional: El avance 2 solo tenía
 
 
 Formato del archivo mis_pendientes.txt:
-Prioridad,Tipo,Nombre,Estado
 ```
+Prioridad,Tipo,Nombre,Estado
 8,Tarea,Entregar proyecto,Pendiente
 5,Clase,Matemáticas Discretas,Pendiente
 3,Personal,Ir al gimnasio,Completada
@@ -84,7 +83,8 @@ Prioridad,Tipo,Nombre,Estado
 
 Se implementó guardado automático: Anteriormente los cambios se perdían al cerrar el programa. Ahora el Gestor_actividades en gestor.h realiza guardado automático al agregar una actividad, marcar como completada, eliminar una actividad, ordenar las actividades y al salir del programa mediante el destructor.
 
-Se agregaron los mecanismos de consulta de información: Se implementaron múltiples funciones para consultar información eficientemente de la estructura:
+Se agregaron los mecanismos de consulta de información: 
+Se implementaron múltiples funciones para consultar información eficientemente de la estructura:
 - obtener_primera(): Retorna la primera actividad de la lista en O(1)
 - obtener_ultima(): Retorna la última actividad de la lista en O(1)
 - obtener_por_indice(int indice): Accede a una actividad específica por su posición
@@ -108,8 +108,8 @@ El usuario ingresa información a través del menú de opciones. Para agregar un
 
 El proyecto carga automáticamente las actividades desde el archivo mis_pendientes.txt si existe. El formato CSV esperado es:
 
-Prioridad,Tipo,Nombre,Estado 
 ```
+Prioridad,Tipo,Nombre,Estado 
 8,Tarea,Entregar proyecto,Pendiente 
 5,Clase,Matemáticas,Pendiente 
 3,Personal,Ejercicio,Completada
@@ -139,6 +139,7 @@ Actividad marcada como completada.
 Al ver estadísticas:
 ```
 ESTADÍSTICAS
+
 Total de actividades: 5
 Actividades pendientes: 3
 Actividades completadas: 2
@@ -160,7 +161,7 @@ Total de actividades: 5
 
 #### Hace un análisis de complejidad correcto y completo para los algoritmos de ordenamiento usados en el programa.
 
-El proyecto implementa tres algoritmos de ordenamiento en sorts.h analizando sus tres casos de complejidad:
+En el proyecto se implementan tres algoritmos de ordenamiento en sorts.h. Al analizar sus tres casos de complejidad:
 
 Bubble Sort (bubble_sort):
  - Mejor caso: O(n) - cuando la lista ya está ordenada y se implementa la optimización de bandera swapped que detecta si no hubo intercambios
@@ -292,7 +293,10 @@ cargar_desde_archivo():
 - Justificación: Cada línea se procesa e inserta en la lista
 
 Componentes del menú principal (main.cpp):
-- mostrar_menu(): O(1) - impresión fija de opciones limpiar_buffer(): O(1) - operación de entrada pausar(): O(1) - espera de entrada
+
+- mostrar_menu(): O(1) impresión fija de opciones
+- limpiar_buffer(): O(1) operación de entrada
+- pausar(): O(1) - espera de entrada
 
 Complejidad final del programa:
 - Mejor caso del sistema - O(1): Cuando el usuario solo consulta primera/última actividad o verifica si la lista está vacía. Operaciones que no requieren recorrido ni ordenamiento.
